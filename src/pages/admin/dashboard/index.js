@@ -4,15 +4,13 @@ import AppContext from '../../../store'
 function Index() {
   const context = useContext(AppContext)
   const [txt,setTxt] = useState("")
-  const { setList,list } = context
-  console.log(list)
+  const { setList,list,addAction,books } = context
   return (
     <div>
         
         {
           
           list.map((item)=>{
-            
             return <div>{item.id}</div>
           })
         }
@@ -31,6 +29,13 @@ function Index() {
             
             setList([item,...list])
         }}>添加</button>
+        <div>
+          count ---- 
+          {books.count}
+        </div>
+        <button onClick={()=>{
+            addAction()
+        }}> count ++ </button>
         
     </div>
   )
