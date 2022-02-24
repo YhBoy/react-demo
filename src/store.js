@@ -1,8 +1,10 @@
 import React,{ createContext, useState, useReducer } from "react";
+import myReducer from "./myReducer";
 const AppContext = createContext()
 const { Provider } = AppContext
 
-function reducer(state,action){
+
+function Reducer(state,action){
     switch(action.type){
             case "COUNT_ADD":
                 return {
@@ -15,7 +17,7 @@ function reducer(state,action){
 }
 
 export function AppProvider(props){
-
+    
     const [list ,setList] = useState([{
         id:1,
         name:"tom"
@@ -24,7 +26,7 @@ export function AppProvider(props){
         name:"jerry"
     }])
 
-    const [books, dispatch] = useReducer(reducer,{
+    const [books, dispatch] = useReducer(Reducer,{
         arrList:[],
         count:1
     })
@@ -35,8 +37,9 @@ export function AppProvider(props){
         })
     }
 
+    const { booksList, addMyReducer,addCustomMyReducer } = myReducer()
     return(
-        <Provider value={{list,setList,addAction,books}}>
+        <Provider value={{list,setList,addMyReducer,booksList,books,addAction,addCustomMyReducer}}>
             {props.children}
         </Provider>
     )

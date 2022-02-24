@@ -1,10 +1,12 @@
 import React,{ useContext, useState } from 'react'
 import AppContext from '../../../store'
 
+
 function Index() {
   const context = useContext(AppContext)
   const [txt,setTxt] = useState("")
-  const { setList,list,addAction,books } = context
+  const { setList,list,addAction,books,booksList,addMyReducer,addCustomMyReducer } = context
+
   return (
     <div>
         
@@ -36,7 +38,32 @@ function Index() {
         <button onClick={()=>{
             addAction()
         }}> count ++ </button>
-        
+
+        <hr />
+        <div>
+            reducerCount --------
+            {
+              booksList.reducerCount
+            }
+        </div>
+        <div>
+          <button onClick={()=>{
+              addMyReducer()
+          }}> reducerCount ++ </button>
+        </div>
+
+        <input placeholder='add' 
+          onChange={(e)=>{
+              setTxt(e.target.value)
+          }}
+        />
+        <div>
+          <button onClick={()=>{
+              addCustomMyReducer(txt)
+          }}> reducerCount ++ </button>
+        </div>
+
+
     </div>
   )
 }
